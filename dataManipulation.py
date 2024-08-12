@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 dataset = pd.read_csv('S3T3CPPT/final_hateXplain.csv')
-print('Dataset Head Transposed:\n',dataset.head().T) # look at dataset
+print('Dataset (First 5 Values Transposed):\n',dataset.head().T) # look at dataset
 print()
 
 '''
@@ -77,17 +77,26 @@ for column_name in dataset.columns:
 print('No. of missing values per column in dataset after replacement of common terms used to denote missing value:\n',dataset.isnull().sum()) # Dataset has no missing values
 print()
 
-# One-Hot Encoding
-uniqueColumnValues = {}
-oldColumns = dataset.columns
+# Converting all values in dataset to lowercase
 for column_name in dataset.columns:
-    print(column_name)
+    dataset[column_name] = dataset[column_name].str.lower()
+
+# One-Hot Encoding (Targets)
+uniqueTargetValues = {}
+encodedDataset = pd.DataFrame(dataset['comment'])
+for column_name in dataset.columns: # Finding all the unique column values in the dataset
     if column_name != 'comment':
-        uniqueColumnValues[column_name] = set(dataset.loc[:, column_name].tolist())
-print(uniqueColumnValues)
-for column_name in uniqueColumnValues:
-    for itm in uniqueColumnValues[column_name]:
+        uniqueTargetValues[column_name] = set(dataset.loc[:, column_name].tolist())
+print('All unique  values in dataset:\n',uniqueTargetValues)
+print()
+
+for column_name in dataset.columns:
+    dataset[column_name] = dataset[column_name].apply(lambda x: np.nan if x == '?' else x)
+
+for column_name in uniqueTargetValues: # Creating a new column in the dataset
+    for itm in uniqueTargetValues[column_name]:
         tempNewCol = pd.DataFrame({(column_name+'='+itm):(list(dataset[column_name] == itm))})
-        dataset = pd.concat([dataset,tempNewCol])
-dataset.drop(columns=dataset.columns)
-dataset.to_csv('output.csv')
+        encodedDataset = pd.concat([encodedDataset,tempNewCol],axis=1)
+        tempNewCol = None
+print('One Hot Encoded Dataset (First 5 Values Transposed):\n',encodedDataset.head().T)
+print()
