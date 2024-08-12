@@ -2,6 +2,11 @@
 
 import numpy as np
 import pandas as pd
+import re
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
 import matplotlib.pyplot as plt
 
 dataset = pd.read_csv('S3T3CPPT/final_hateXplain.csv')
@@ -100,3 +105,39 @@ for column_name in uniqueTargetValues: # Creating a new column in the dataset
         tempNewCol = None
 print('One Hot Encoded Dataset (First 5 Values Transposed):\n',encodedDataset.head().T)
 print()
+
+# string Tokenization, remove punctuation, stopwords, emojis, doing word stemming and replacing common text abbreviations
+def stringTokenize(string):
+    # removing the <user> tags at the start
+    string = re.sub('<(\w+)>','',string)
+
+    # replacing common text abbreviations
+    string = re.sub(' u ',' you ',string)
+    string = re.sub(' ikr ',' i know right ',string)
+    string = re.sub(' idk ',' i do not know ',string)
+    string = re.sub(' lol ',' laugh out loud ',string)
+    string = re.sub(' ik ',' i know ',string)
+
+    # tokenize and remove punctuation
+    puncInRegex = re.sub(r"[^\s\w]", "", string)
+    removePuncTokenized = word_tokenize(puncInRegex.lower())
+    
+
+    # remove stopwords
+    stopWords = stopwords.words('english')
+    stopWordsRemoved = []
+    for itm in removePuncTokenized:
+        if itm not in stopWords:
+            stopWordsRemoved.append(itm)
+    
+    # stemming
+    stemmed = []
+    ps = PorterStemmer()
+    for w in stopWordsRemoved:
+        stemmed.append(ps.stem(w))
+    return stemmed
+    
+
+tokenizedDataset = encodedDataset['comment'].apply(stringTokenize)
+print('First 5 values of final preprocessed tokenized one-hot encoded dataset transposed:\n',tokenizedDataset.head().T)
+tokenizedDataset.to_csv('S3T3CPPT/finalPreprocessedDataset')
