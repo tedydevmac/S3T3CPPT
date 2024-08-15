@@ -9,7 +9,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 import matplotlib.pyplot as plt
 
-dataset = pd.read_csv('S3T3CPPT/final_hateXplain.csv')
+dataset = pd.read_csv('S3T3CPPT/rawDataset.csv')
 print('Dataset (First 5 Values Transposed):\n',dataset.head().T) # look at dataset
 print()
 
@@ -81,6 +81,9 @@ for column_name in dataset.columns:
 
 print('No. of missing values per column in dataset after replacement of common terms used to denote missing value:\n',dataset.isnull().sum()) # Dataset has no missing values
 print()
+
+# Our only target sexual orientation, so we drop the rest of the targets
+dataset.drop(columns=['label','race','gender','religion'],inplace=True)
 
 # Converting all values in dataset to lowercase
 for column_name in dataset.columns:
