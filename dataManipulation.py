@@ -141,4 +141,4 @@ def stringTokenize(string):
 tokenizedDataset = encodedDataset['comment'].apply(stringTokenize)
 tokenizedDataset = pd.concat([tokenizedDataset,encodedDataset.loc[:, encodedDataset.columns != 'comment']],axis=1)
 print('First 5 values of final preprocessed tokenized one-hot encoded dataset transposed:\n',tokenizedDataset.head().T)
-tokenizedDataset.to_csv('S3T3CPPT/finalPreprocessedDataset')
+tokenizedDataset.to_csv('S3T3CPPT/finalPreprocessedDataset.csv')
