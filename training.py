@@ -22,8 +22,9 @@ target_columns = [
     "orientation=homosexual",
     "orientation=bisexual",
 ]
+feature_column = ["comment"]
 
-x = dataset.drop(target_columns, axis=1)
+x = dataset[[feature_column]]
 y = dataset[target_columns]
 
 # Training and Testing
