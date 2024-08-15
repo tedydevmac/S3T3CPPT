@@ -25,3 +25,9 @@ target_columns = [
 
 x = dataset.drop(target_columns, axis=1)
 y = dataset[target_columns]
+
+# Training and Testing
+
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.25
+)  # 75% training, 25% testing
