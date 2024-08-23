@@ -6,49 +6,13 @@ from sklearn.metrics import accuracy_score, classification_report
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.multiclass import OneVsRestClassifier
 
-# For string tokenization
-import re
-import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
-
+# import string tokenization function from data manipulation file
+from dataManipulation import stringTokenize
 
 """
 To Do:
 1. Make predictions with the model
 """
-
-
-# Function copied from datamanipulation.py
-def stringTokenize(string):
-    # removing the <user> tags at the start
-    string = re.sub("<(\w+)>", "", string)
-
-    # replacing common text abbreviations
-    string = re.sub(" u ", " you ", string)
-    string = re.sub(" ikr ", " i know right ", string)
-    string = re.sub(" idk ", " i do not know ", string)
-    string = re.sub(" lol ", " laugh out loud ", string)
-    string = re.sub(" ik ", " i know ", string)
-
-    # tokenize and remove punctuation
-    puncInRegex = re.sub(r"[^\s\w]", "", string)
-    removePuncTokenized = word_tokenize(puncInRegex.lower())
-
-    # remove stopwords
-    stopWords = stopwords.words("english")
-    stopWordsRemoved = []
-    for itm in removePuncTokenized:
-        if itm not in stopWords:
-            stopWordsRemoved.append(itm)
-
-    # stemming
-    stemmed = []
-    ps = PorterStemmer()
-    for w in stopWordsRemoved:
-        stemmed.append(ps.stem(w))
-    return stemmed
 
 
 dataset = pd.read_csv("./finalPreprocessedDataset.csv", index_col=0)
