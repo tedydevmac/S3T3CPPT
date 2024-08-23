@@ -180,7 +180,7 @@ def stringTokenize(string):
         stemmed.append(ps.stem(w))
     return stemmed
 
-
+'''
 tokenizedDataset = encodedDataset["comment"].apply(stringTokenize)
 tokenizedDataset = pd.concat(
     [tokenizedDataset, encodedDataset.loc[:, encodedDataset.columns != "comment"]],
@@ -189,5 +189,5 @@ tokenizedDataset = pd.concat(
 print(
     "First 5 values of final preprocessed tokenized one-hot encoded dataset transposed:\n",
     tokenizedDataset.head().T,
-)
-tokenizedDataset.to_csv("./finalPreprocessedDataset.csv")
+)'''
+# tokenizedDataset.to_csv("./finalPreprocessedDataset.csv")
