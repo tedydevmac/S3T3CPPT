@@ -9,7 +9,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 import matplotlib.pyplot as plt
 
-dataset = pd.read_csv("S3T3CPPT/rawDataset.csv")
+dataset = pd.read_csv("./rawDataset.csv")
 print("Dataset (First 5 Values Transposed):\n", dataset.head().T)  # look at dataset
 print()
 
@@ -190,4 +190,4 @@ print(
     "First 5 values of final preprocessed tokenized one-hot encoded dataset transposed:\n",
     tokenizedDataset.head().T,
 )
-tokenizedDataset.to_csv("S3T3CPPT/finalPreprocessedDataset.csv")
+tokenizedDataset.to_csv("./finalPreprocessedDataset.csv")
