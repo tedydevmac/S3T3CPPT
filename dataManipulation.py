@@ -7,7 +7,17 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
+import ssl
 import matplotlib.pyplot as plt
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+nltk.download('all')
 
 dataset = pd.read_csv("./rawDataset.csv")
 print("Dataset (First 5 Values Transposed):\n", dataset.head().T)  # look at dataset

@@ -87,14 +87,13 @@ print(
 
 
 # Make predictions!!!!!
-# new_comment = input("Enter the comment: ")
-new_comment = "i hate faggot"
+new_comment = "i hate faggots"
+new_comment = input("Enter the comment: ")
 new_comment_toke = stringTokenize(new_comment)
 new_comment_not_toke = ''
 for word in new_comment_toke:
     new_comment_not_toke += word+' '
-comment_toke = vectorizer.transform([new_comment_toke[:-1]])
-print(new_comment_toke)
-print(comment_toke)
+    
+comment_toke = vectorizer.transform([new_comment_not_toke[:-1]])
 predictions = classifier.predict(comment_toke)
-#print(predictions)
+print(predictions)
