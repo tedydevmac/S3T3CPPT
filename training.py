@@ -21,24 +21,32 @@ target_columns = [
 
 feature_column = "comment"
 
-# Features and target
+# featores
 X = dataset[feature_column]
 y = dataset[target_columns]
 
-# convert to numerical data
+# make into numerical data 
 vectorizer = TfidfVectorizer()
 X_tfidf = vectorizer.fit_transform(X)
 
-# Split the data into training and testing sets
+# Split the data into the sets 
 x_train, x_test, y_train, y_test = train_test_split(
     X_tfidf, y, test_size=0.2, random_state=42
 )
 
-# Train classifier 
+# Training the weak classifier 
 classifier = OneVsRestClassifier(LogisticRegression(max_iter=1000))
 classifier.fit(x_train, y_train)
 
-# Evaluate model
+# Evaluate model :)))
 y_pred = classifier.predict(x_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred))
+
+
+# Make predictions!!!!!
+#new_comment = input("Enter the comment: ")
+new_comment = 'I love straight people'
+comment_toke = vectorizer.transform([new_comment])
+predictions = classifier.predict(comment_toke)
+print(predictions)
