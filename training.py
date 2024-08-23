@@ -20,10 +20,8 @@ dataset = pd.read_csv("./finalPreprocessedDataset.csv", index_col=0)
 # Define target columns (orientation columns)
 target_columns = [
     "orientation=no_orientation",
-    "orientation=asexual",
     "orientation=heterosexual",
     "orientation=homosexual",
-    "orientation=bisexual",
 ]
 
 # Define feature column (comments column)
@@ -38,7 +36,9 @@ vectorizer = TfidfVectorizer()
 X_tfidf = vectorizer.fit_transform(X)
 
 # Split the data into training and testing sets
-x_train, x_test, y_train, y_test = train_test_split(X_tfidf, y, test_size=0.2, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(
+    X_tfidf, y, test_size=0.2, random_state=42
+)
 
 # Train a classifier using OneVsRestClassifier
 classifier = OneVsRestClassifier(LogisticRegression(max_iter=1000))
