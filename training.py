@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.multiclass import OneVsRestClassifier
 
 # import string tokenization function from data manipulation file
-from dataManipulation import stringTokenize
+from stringTokenizationFunc import stringTokenize
 
 """
 To Do:
