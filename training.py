@@ -15,7 +15,7 @@ To Do:
 """
 
 
-dataset = pd.read_csv("./finalPreprocessedDataset.csv", index_col=0)
+dataset = pd.read_csv("preprocessedDatasets/finalPreprocessedDataset.csv", index_col=0)
 
 target_columns = [
     "orientation=no_orientation",
@@ -57,7 +57,6 @@ new_comment_toke = stringTokenize(new_comment)
 new_comment_not_toke = ''
 for word in new_comment_toke:
     new_comment_not_toke += word+' '
-    
 comment_toke = vectorizer.transform([new_comment_not_toke[:-1]])
 predictions = classifier.predict(comment_toke)
 print(predictions)

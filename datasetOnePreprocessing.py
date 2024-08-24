@@ -1,11 +1,9 @@
-# import final dataset into main file
-
 import numpy as np
 import pandas as pd
 
 from stringTokenizationFunc import stringTokenize
 
-dataset = pd.read_csv("./rawDatasetOne.csv")
+dataset = pd.read_csv("rawDatasets/rawDatasetOne.csv")
 print("Dataset (First 5 Values Transposed):\n", dataset.head().T)  # look at dataset
 print()
 
@@ -145,18 +143,16 @@ for column_name in uniqueTargetValues:  # Creating a new column in the dataset
 print("One Hot Encoded Dataset (First 5 Values Transposed):\n", encodedDataset.head().T)
 print()
 
-
 # string Tokenization, remove punctuation, stopwords, emojis, doing word stemming and replacing common text abbreviations
 
-
-'''
 tokenizedDataset = encodedDataset["comment"].apply(stringTokenize)
 tokenizedDataset = pd.concat(
     [tokenizedDataset, encodedDataset.loc[:, encodedDataset.columns != "comment"]],
     axis=1,
 )
+
 print(
     "First 5 values of final preprocessed tokenized one-hot encoded dataset transposed:\n",
     tokenizedDataset.head().T,
-)'''
-# tokenizedDataset.to_csv("./finalPreprocessedDataset.csv")
+)
+tokenizedDataset.to_csv("preprocessedDatasets/datasetOnePreprocessed.csv")

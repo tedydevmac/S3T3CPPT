@@ -15,6 +15,7 @@ else:
 
 nltk.download('all')
 
+# string Tokenization, remove punctuation, stopwords, emojis, doing word stemming and replacing common text abbreviations
 def stringTokenize(string):
     # removing the <user> tags at the start
     string = re.sub("<(\w+)>", "", string)
