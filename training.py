@@ -21,6 +21,7 @@ target_columns = [
     "orientation=no_orientation",
     "orientation=heterosexual",
     "orientation=homosexual",
+    "orientation=bisexual",
 ]
 
 feature_column = "comment"
@@ -51,12 +52,13 @@ print(
 
 
 # Make predictions!!!!!
-new_comment = "i hate faggots"
-new_comment = input("Enter the comment: ")
+new_comment = "I hate straights"
+# new_comment = input("Enter the comment: ")
 new_comment_toke = stringTokenize(new_comment)
 new_comment_not_toke = ''
 for word in new_comment_toke:
     new_comment_not_toke += word+' '
 comment_toke = vectorizer.transform([new_comment_not_toke[:-1]])
 predictions = classifier.predict(comment_toke)
+
 print(predictions)
