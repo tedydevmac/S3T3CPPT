@@ -5,8 +5,9 @@ datasetOnePreprocessed = pd.read_csv("preprocessedDatasets/datasetOnePreprocesse
 datasetTwoPreprocessed = pd.read_csv("preprocessedDatasets/datasetTwoPreprocessed.csv")
 
 jointDataset = pd.concat([datasetOnePreprocessed, datasetTwoPreprocessed])
-jointDataset = jointDataset.drop(['Unnamed: 0'],axis=1)
-
+jointDataset = jointDataset.drop(
+    ["Unnamed: 0"], axis=1
+)  # dropping extra numerical index column
 
 
 print('No. of true values per column:\n',jointDataset.apply(lambda x: (x == True).sum()))
