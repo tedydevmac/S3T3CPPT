@@ -83,7 +83,7 @@ print(
 
 new_comment = "I hate faggots"
 # new_comment = input("Enter the comment: ")
-# Tokenising the new comment so better
+# string Tokenization, remove punctuation, stopwords, emojis, doing word stemming and replacing common text abbreviations
 new_comment_toke = stringTokenize(new_comment)
 new_comment_not_toke = ""
 # merging tokenised string into one sentence for vectorizer.transform to work
