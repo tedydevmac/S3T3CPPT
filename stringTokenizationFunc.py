@@ -45,5 +45,3 @@ def stringTokenize(string):
     for w in stopWordsRemoved:
         stemmed.append(ps.stem(w))
     return stemmed
-
-print(stringTokenize('hello world'))
