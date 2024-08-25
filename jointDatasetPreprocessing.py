@@ -17,7 +17,7 @@ print()
 
 jointDataset = jointDataset.drop(['orientation=asexual'],axis=1)
 
-print('No. of true values per column before deleting asexual:\n',jointDataset.apply(lambda x: (x == True).sum()))
+print('No. of true values per column after deleting asexual:\n',jointDataset.apply(lambda x: (x == True).sum()))
 print('No. of false values per column after deleting asexual:\n',jointDataset.apply(lambda x: (x == False).sum()))
 print()
 # all targets in dataset have a decent number of true and false values

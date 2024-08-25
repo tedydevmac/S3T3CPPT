@@ -86,6 +86,7 @@ new_comment = "I hate faggots"
 # Tokenising the new comment so better
 new_comment_toke = stringTokenize(new_comment)
 new_comment_not_toke = ""
+# merging tokenised string into one sentence for vectorizer.transform to work
 for word in new_comment_toke:
     new_comment_not_toke += word + " "
 comment_toke = vectorizer.transform([new_comment_not_toke[:-1]])
