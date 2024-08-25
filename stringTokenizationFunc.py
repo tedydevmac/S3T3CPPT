@@ -13,7 +13,8 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
-nltk.download('all')
+nltk.download('punkt')
+nltk.download('stopwords')
 
 # string Tokenization, remove punctuation, stopwords, emojis, doing word stemming and replacing common text abbreviations
 def stringTokenize(string):
@@ -44,3 +45,5 @@ def stringTokenize(string):
     for w in stopWordsRemoved:
         stemmed.append(ps.stem(w))
     return stemmed
+
+print(stringTokenize('hello world'))
