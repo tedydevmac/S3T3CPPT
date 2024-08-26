@@ -15,10 +15,6 @@ from sklearn.model_selection import GridSearchCV
 # import string tokenization function from data manipulation file
 from stringTokenizationFunc import stringTokenize
 
-# for checking the amount of time taken to train
-import time
-startTime = time.time()
-
 """
 To Do:
 1. Fine tune the model by choosing between the models
@@ -54,12 +50,6 @@ C_value = 1.0
 solver_type = "liblinear"
 classifier = OneVsRestClassifier(LogisticRegression(C=C_value, solver=solver_type, max_iter=1000))
 classifier.fit(x_train, y_train)
-
-# check how much time it takes to train
-if len(str(int((time.time()-startTime)%60))) < 2:
-    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+'0'+str(int((time.time()-startTime)%60)))
-else:
-    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+str(int((time.time()-startTime)%60)))
 
 
 # Evaluation by grid search (bad)

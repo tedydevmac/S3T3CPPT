@@ -15,10 +15,6 @@ from sklearn.model_selection import GridSearchCV
 # import string tokenization function from data manipulation file
 from stringTokenizationFunc import stringTokenize
 
-# for checking the amount of time taken to train
-import time
-startTime = time.time()
-
 """
 To Do:
 1. Fine tune the model by choosing between the models
@@ -52,12 +48,6 @@ x_train, x_test, y_train, y_test = train_test_split(
 # Training the weak classifier
 knn = KNeighborsClassifier(n_neighbors=1)
 knn.fit(x_train, y_train)
-
-# check how much time it takes to train
-if len(str(int((time.time()-startTime)%60))) < 2:
-    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+'0'+str(int((time.time()-startTime)%60)))
-else:
-    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+str(int((time.time()-startTime)%60)))
 
 
 '''
