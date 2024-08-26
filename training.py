@@ -111,15 +111,20 @@ while True:
 
     # return values
     print(predictions)
-    if predictions[0][0] == 1:
-        print("The message is not offensive to those of the LGBTQ community")
-    if predictions[0][1] == 1:
-        print("The message is offensive to heterosexuals")
-    if predictions[0][2] == 1:
-        print(
-            "The message is offensive to those of the LGBTQ community especially to the homosexuals"
-        )
-    if predictions[0][3] == 1:
-        print(
-            "The message is offensive to those of the LGBTQ community especially the bisexuals"
-        )
+    for i in predictions: 
+        if sum(i) > 1:
+            print("The message is not offensive to those of the LGBTQ community")
+        elif sum(i) == 0:
+            print("The message is offensive to those part of the TQ+ community of the LGBTQ+")
+        elif predictions[0][0] == 1:
+            print("The message is not offensive to those of the LGBTQ community")
+        elif predictions[0][1] == 1:
+            print("The message is offensive to heterosexuals")
+        elif predictions[0][2] == 1:
+            print(
+                "The message is offensive to those of the LGBTQ community especially to the homosexuals"
+            )
+        elif predictions[0][3] == 1:
+            print(
+                "The message is offensive to those of the LGBTQ community especially the bisexuals"
+            )
