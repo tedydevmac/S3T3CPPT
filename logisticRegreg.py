@@ -2,9 +2,10 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.multiclass import OneVsRestClassifier
+import numpy as np
 
 # Evaluation
 from sklearn.model_selection import cross_val_score
@@ -49,32 +50,22 @@ x_train, x_test, y_train, y_test = train_test_split(
 )
 
 # Training the weak classifier
-classifier = OneVsRestClassifier(LogisticRegression(max_iter=1000))
+C_value = 1.0
+solver_type = "liblinear"
+classifier = OneVsRestClassifier(LogisticRegression(C=C_value, solver=solver_type, max_iter=1000))
 classifier.fit(x_train, y_train)
 
-
-# Evaluation by cross validation
-
-cross_val_score = cross_val_score(classifier, X_tfidf, y, cv=5, scoring="accuracy")
-print("CVal:", cross_val_score)
-print("Mean CVal score:", cross_val_score.mean())
-
-# check how much time it takes to train
-if len(str(int((time.time()-startTime)%60))) < 2:
-    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+'0'+str(int((time.time()-startTime)%60)))
-else:
-    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+str(int((time.time()-startTime)%60)))
-
-# Evaluation by grid search
+# Evaluation by grid search (bad)
+'''
 param = {
     "estimator__C": [0.1, 1, 10, 100],
     "estimator__solver": ["liblinear", "saga"],
 }
 search_grid = GridSearchCV(
-    OneVsRestClassifier(LogisticRegression(max_iter=1000)),
-    param,
-    cv=5,
-    scoring="accuracy",
+   OneVsRestClassifier(LogisticRegression(max_iter=1000)),
+   param,
+   cv=5,
+   scoring="accuracy",
 )
 search_grid.fit(X_tfidf, y)
 print("Best parameters:", search_grid.best_params_)
@@ -83,19 +74,40 @@ print("Best cv score:", search_grid.best_score_)
 # the grid search takes the longest 😴
 # Evaluation takes a while to run btw note to ted and baron
 # ohohoh jaron ilysm for the pre processing u did, its so beautiful
-
-# Make predictions!!!!!
+'''
+# predictions + Evaluation by classification report (i dun wan so not gunna use)
 y_pred = classifier.predict(x_test)
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print(
-    "Classification Report:\n", classification_report(y_test, y_pred, zero_division=0)
-)
+# print("Accuracy:", accuracy_score(y_test, y_pred))
+# print(
+#    "Classification Report:\n", classification_report(y_test, y_pred, zero_division=0)
+# )
+
+# Evaluation by cross validation
+cross_val_score = cross_val_score(classifier, X_tfidf, y, cv=5, scoring="accuracy")
+print("CVal:", cross_val_score)
+print("Mean CVal score (use this):", cross_val_score.mean())
+
+# Evaluation by Confusion Matrix
+conf_matrix = confusion_matrix(y_test.values.argmax(axis=1), y_pred.argmax(axis=1))
+print("Confusion Matrix:\n", conf_matrix)
+conf_matrix_np = np.array(conf_matrix)
+# Calculate the sum of TP and TN 
+TP = np.diag(conf_matrix)
+FP = np.sum(conf_matrix, axis=0) - TP
+FN = np.sum(conf_matrix, axis=1) - TP
+TN = np.sum(conf_matrix) - (FP + FN + TP)
+# Calculate the total number of samples
+total_samples = np.sum(conf_matrix)
+# Calculate the accuracy
+accuracy = (np.sum(TP) + np.sum(TN))/ (np.sum(TP) + np.sum(TN) + np.sum(FP) + np.sum(FN))
+print("Confusion Matirx %: ", accuracy)
 
 # check how much time it takes to train
 if len(str(int((time.time()-startTime)%60))) < 2:
     print('Time taken: '+str(int((time.time()-startTime)//60))+':'+'0'+str(int((time.time()-startTime)%60)))
 else:
     print('Time taken: '+str(int((time.time()-startTime)//60))+':'+str(int((time.time()-startTime)%60)))
+
 
 new_comment = "Straight ahh"
 while True:
