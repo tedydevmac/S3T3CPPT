@@ -55,6 +55,13 @@ solver_type = "liblinear"
 classifier = OneVsRestClassifier(LogisticRegression(C=C_value, solver=solver_type, max_iter=1000))
 classifier.fit(x_train, y_train)
 
+# check how much time it takes to train
+if len(str(int((time.time()-startTime)%60))) < 2:
+    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+'0'+str(int((time.time()-startTime)%60)))
+else:
+    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+str(int((time.time()-startTime)%60)))
+
+
 # Evaluation by grid search (bad)
 '''
 param = {
@@ -101,12 +108,6 @@ total_samples = np.sum(conf_matrix)
 # Calculate the accuracy
 accuracy = (np.sum(TP) + np.sum(TN))/ (np.sum(TP) + np.sum(TN) + np.sum(FP) + np.sum(FN))
 print("Confusion Matirx %: ", accuracy)
-
-# check how much time it takes to train
-if len(str(int((time.time()-startTime)%60))) < 2:
-    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+'0'+str(int((time.time()-startTime)%60)))
-else:
-    print('Time taken: '+str(int((time.time()-startTime)//60))+':'+str(int((time.time()-startTime)%60)))
 
 
 new_comment = "Straight ahh"
