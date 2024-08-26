@@ -3,5 +3,5 @@
     "vscode-pets.petType": "totoro",
     "vscode-pets.theme": "castle",
     "vscode-pets.petSize": "medium",
-    "vscode-pets.throwBallWithMouse": false,
+    "vscode-pets.throwBallWithMouse": true,
 }
