@@ -109,13 +109,13 @@ while True:
     comment_toke = vectorizer.transform([new_comment_not_toke[:-1]])
     predictions = classifier.predict(comment_toke)
 
-    # return values
+    # return values to see who the message is offensive to or not offensive
     print(predictions)
     for i in predictions: 
         if sum(i) > 1:
-            print("The message is not offensive to those of the LGBTQ community")
+            print("The message is not offensive to those of the LGBTQ community") # e,g. "homophobic"
         elif sum(i) == 0:
-            print("The message is offensive to those part of the TQ+ community of the LGBTQ+")
+            print("The message is offensive to those part of the TQ+ community of the LGBTQ+") # e.g. "trans"
         elif predictions[0][0] == 1:
             print("The message is not offensive to those of the LGBTQ community")
         elif predictions[0][1] == 1:
