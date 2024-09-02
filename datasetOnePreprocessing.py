@@ -7,22 +7,6 @@ dataset = pd.read_csv("rawDatasets/rawDatasetOne.csv")
 print("Dataset (First 5 Values Transposed):\n", dataset.head().T)  # look at dataset
 print()
 
-"""
-1.Check for Data Types
-2.Check Columns Names
-3.Check for Missing Values
-4.Check for Bad Data 
-5.Imputation of Null values
-6.Check for distribution type
-7.Scaling the data 
-8.Checks for outliers 
-9.Check for data Imbalance 
-10.Perform necessary transformations
-11.Perform feature Engineering 
-12.Binning Continuous data 
-13.Feature selection
-"""
-
 # Check for Datatypes
 print("Column Datatypes:\n", dataset.dtypes)  # Datatypes are all objects
 print()

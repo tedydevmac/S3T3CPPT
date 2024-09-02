@@ -46,7 +46,7 @@ x_train, x_test, y_train, y_test = train_test_split(
 )
 
 # Training the weak classifier
-knn = KNeighborsClassifier(n_neighbors=1)
+knn = KNeighborsClassifier(n_neighbors=3, algorithm="ball_tree")
 knn.fit(x_train, y_train)
 
 
