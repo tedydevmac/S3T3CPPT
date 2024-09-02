@@ -15,6 +15,8 @@ from sklearn.model_selection import GridSearchCV
 # import string tokenization function from data manipulation file
 from stringTokenizationFunc import stringTokenize
 
+# Stage 3 - Choose and Train Model
+
 dataset = pd.read_csv("preprocessedDatasets/finalPreprocessedDataset.csv", index_col=0)
 
 target_columns = [
@@ -73,6 +75,8 @@ y_pred = classifier.predict(x_test)
 #    "Classification Report:\n", classification_report(y_test, y_pred, zero_division=0)
 # )
 
+# Stage 4 - Evaluate and Tune Model
+
 # Evaluation by cross validation
 cross_val_score = cross_val_score(classifier, X_tfidf, y, cv=5, scoring="accuracy")
 print("CVal:", cross_val_score)
@@ -93,10 +97,11 @@ total_samples = np.sum(conf_matrix)
 accuracy = (np.sum(TP) + np.sum(TN))/ (np.sum(TP) + np.sum(TN) + np.sum(FP) + np.sum(FN))
 print("Confusion Matirx %: ", accuracy)
 
+# Stage 5 - Make Predictions
 
-new_comment = "Straight ahh"
-while True:
-    new_comment = input("Enter the comment: ")
+new_comment = ""
+while new_comment.lower() != 'quit':
+    new_comment = input('Enter the comment: (Enter "quit" to exit)')
     # string Tokenization, remove punctuation, stopwords, emojis, doing word stemming and replacing common text abbreviations
     new_comment_toke = stringTokenize(new_comment)
     new_comment_not_toke = ""
