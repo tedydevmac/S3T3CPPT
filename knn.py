@@ -46,34 +46,9 @@ x_train, x_test, y_train, y_test = train_test_split(
 knn = KNeighborsClassifier(n_neighbors=3, algorithm="ball_tree")
 knn.fit(x_train, y_train)
 
-'''
-# Evaluation by grid search
-param = {
-    "estimator__C": [0.1, 1, 10, 100],
-    "estimator__solver": ["liblinear", "saga"],
-}
-search_grid = GridSearchCV(
-    OneVsRestClassifier(LogisticRegression(max_iter=1000)),
-    param,
-    cv=5,
-    scoring="accuracy",
-)
-search_grid.fit(X_tfidf, y)
-print("Best parameters:", search_grid.best_params_)
-print("Best cv score:", search_grid.best_score_)
-'''
-# the grid search takes the longest 😴
-# Evaluation takes a while to run btw note to ted and baron
 # ohohoh jaron ilysm for the pre processing u did, its so beautiful
 
-# Make predictions!!!!!
 y_pred = knn.predict(x_test)
-'''
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print(
-    "Classification Report:\n", classification_report(y_test, y_pred, zero_division=0)
-)
-'''
 
 # Stage 4 - Evaluate and Tune Model
 
@@ -98,6 +73,9 @@ accuracy = (np.sum(TP) + np.sum(TN))/ (np.sum(TP) + np.sum(TN) + np.sum(FP) + np
 print("Confusion Matirx %: ", accuracy)
 
 # Stage 5 - Make Predictions
+
+
+# predictions on user's input
 
 new_comment = ""
 while new_comment.lower() != 'quit':

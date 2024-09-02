@@ -47,35 +47,11 @@ solver_type = "liblinear"
 classifier = OneVsRestClassifier(LogisticRegression(C=C_value, solver=solver_type, max_iter=1000))
 classifier.fit(x_train, y_train)
 
-
-# Evaluation by grid search (bad)
-'''
-param = {
-    "estimator__C": [0.1, 1, 10, 100],
-    "estimator__solver": ["liblinear", "saga"],
-}
-search_grid = GridSearchCV(
-   OneVsRestClassifier(LogisticRegression(max_iter=1000)),
-   param,
-   cv=5,
-   scoring="accuracy",
-)
-search_grid.fit(X_tfidf, y)
-print("Best parameters:", search_grid.best_params_)
-print("Best cv score:", search_grid.best_score_)
-
-# the grid search takes the longest 😴
-# Evaluation takes a while to run btw note to ted and baron
 # ohohoh jaron ilysm for the pre processing u did, its so beautiful
-'''
-# predictions + Evaluation by classification report (i dun wan so not gunna use)
-y_pred = classifier.predict(x_test)
-# print("Accuracy:", accuracy_score(y_test, y_pred))
-# print(
-#    "Classification Report:\n", classification_report(y_test, y_pred, zero_division=0)
-# )
 
 # Stage 4 - Evaluate and Tune Model
+
+y_pred = classifier.predict(x_test)
 
 # Evaluation by cross validation
 cross_val_score = cross_val_score(classifier, X_tfidf, y, cv=5, scoring="accuracy")
@@ -95,13 +71,16 @@ TN = np.sum(conf_matrix) - (FP + FN + TP)
 total_samples = np.sum(conf_matrix)
 # Calculate the accuracy
 accuracy = (np.sum(TP) + np.sum(TN))/ (np.sum(TP) + np.sum(TN) + np.sum(FP) + np.sum(FN))
-print("Confusion Matirx %: ", accuracy)
+print("Confusion Matrix %: ", accuracy)
 
 # Stage 5 - Make Predictions
 
+
+# predictions on user's input
+
 new_comment = ""
 while new_comment.lower() != 'quit':
-    new_comment = input('Enter the comment: (Enter "quit" to exit)')
+    new_comment = input('Enter the comment to predict (Enter "quit" to exit):\n')
     # string Tokenization, remove punctuation, stopwords, emojis, doing word stemming and replacing common text abbreviations
     new_comment_toke = stringTokenize(new_comment)
     new_comment_not_toke = ""
