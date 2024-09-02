@@ -15,12 +15,6 @@ from sklearn.model_selection import GridSearchCV
 # import string tokenization function from data manipulation file
 from stringTokenizationFunc import stringTokenize
 
-"""
-To Do:
-1. Fine tune the model by choosing between the models
-"""
-
-
 dataset = pd.read_csv("preprocessedDatasets/finalPreprocessedDataset.csv", index_col=0)
 
 target_columns = [
