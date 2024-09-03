@@ -38,27 +38,27 @@ vectorizer = TfidfVectorizer()
 X_tfidf = vectorizer.fit_transform(X)
 
 # Split the data into the sets
-x_train, x_test, y_train, y_test = train_test_split(
+x_train, x_eval, y_train, y_eval = train_test_split(
     X_tfidf, y, test_size=0.2, random_state=42
 )
 
 # Training the weak classifier
-knn = KNeighborsClassifier(n_neighbors=3, algorithm="ball_tree")
+knn = KNeighborsClassifier(n_neighbors=3, algorithm="auto", weights="distance")
 knn.fit(x_train, y_train)
 
 # ohohoh jaron ilysm for the pre processing u did, its so beautiful
 
-y_pred = knn.predict(x_test)
+y_pred = knn.predict(x_eval)
 
 # Stage 4 - Evaluate and Tune Model
 
 # Evaluation by cross validation
 cross_val_score = cross_val_score(knn, X_tfidf, y, cv=5, scoring="accuracy")
 print("CVal:", cross_val_score)
-print("Mean CVal score (use this):", cross_val_score.mean())
+print("Mean CVal score:", cross_val_score.mean())
 
 # Evaluation by Confusion Matrix
-conf_matrix = confusion_matrix(y_test.values.argmax(axis=1), y_pred.argmax(axis=1))
+conf_matrix = confusion_matrix(y_eval.values.argmax(axis=1), y_pred.argmax(axis=1))
 print("Confusion Matrix:\n", conf_matrix)
 conf_matrix_np = np.array(conf_matrix)
 # Calculate the sum of TP and TN 
@@ -70,16 +70,12 @@ TN = np.sum(conf_matrix) - (FP + FN + TP)
 total_samples = np.sum(conf_matrix)
 # Calculate the accuracy
 accuracy = (np.sum(TP) + np.sum(TN))/ (np.sum(TP) + np.sum(TN) + np.sum(FP) + np.sum(FN))
-print("Confusion Matirx %: ", accuracy)
+print("Confusion Matrix %: ", accuracy)
 
 # Stage 5 - Make Predictions
-
-
-# predictions on user's input
-
-new_comment = ""
-while new_comment.lower() != 'quit':
-    new_comment = input('Enter the comment: (Enter "quit" to exit)')
+examples = ["Everyone should be free to love whoever they want.", "I can't believe those people are allowed to marry.", "Bisexuals are just confused, pick a side!", "Being straight is the only right way to live.", "Trans rights are human rights!", "Why would anyone choose to be part of that community?", "Love is love, no matter who it is between.", "People need to stop pushing their gay agenda on others.", "Straight people are the real minority these days.", "Why can't bisexuals just make up their minds?"]
+for i in examples:
+    new_comment = i
     # string Tokenization, remove punctuation, stopwords, emojis, doing word stemming and replacing common text abbreviations
     new_comment_toke = stringTokenize(new_comment)
     new_comment_not_toke = ""
