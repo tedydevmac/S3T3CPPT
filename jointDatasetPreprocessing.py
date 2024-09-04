@@ -9,7 +9,7 @@ print('First 5 values of joint dataset transposed:\n',jointDataset.head().T)
 jointDataset = jointDataset.drop(
     ["Unnamed: 0"], axis=1
 )  # dropping extra numerical index column
-
+print('First 5 values of joint dataset transposed after dropping extra numerical index column:\n',jointDataset.head().T)
 
 print('No. of true values per column:\n',jointDataset.apply(lambda x: (x == True).sum()))
 print('No. of false values per column:\n',jointDataset.apply(lambda x: (x == False).sum()))
