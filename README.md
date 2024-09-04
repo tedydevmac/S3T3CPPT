@@ -1,17 +1,44 @@
-No stage: stringTokenizationFunc.py
-Used in datasetOnePreprocessing.py, datasetTwoPreprocessing.py, logisticRegression.py
+# Cyberbullying Detection Project
 
-Stage 1 - Gather Data
-In report, not in code
+This project focuses on detecting and classifying cyberbullying in text, particularly against the LGBTQ community.
 
-Stage 2 - Data Pre-Processing
-Dataset 1: [datasetOnePreprocessing.py]('./datasetOnePreprocessing.py) - dataset preprocessing for the dataset on [cyberbullying data for multi label classification](https://www.kaggle.com/datasets/sayankr007/cyber-bullying-data-for-multi-label-classification?select=final_hateXplain.csv)
-Dataset 2: [datasetTwoPreprocessing.py]('./datasetTwoPreprocessing.py) - dataset preprocessing for the dataset on [anti lgbtq cyberbullying texts](https://www.kaggle.com/datasets/kw5454331/anti-lgbt-cyberbullying-texts)
-After concatenating datasets: [jointDatasetPreprocessing.py]('./jointDatasetPreprocessing.py')
-Data visualisation: [visualise.py]('./visualise.py)
-Run datasetOnePreprocessing.py and datasetTwoPreprocessing.py before jointDatasetPreprocessing.py
+## Stage 1 - Gather Data
 
-Stage 3 - Choose and Train Model, Stage 4 - Evaluate and Tune Model and Stage 5 - Make Predictions
-Logistic Regression model: [logisticRegression.py]('./logisticRegression.py')
-K-Nearest-Neighbours: [knn.py]('./knn.py)
-Stage 3, 4 and 5 are all in the same file (indicated by comments)
+No scripts
+
+## Stage 2 - Data Pre-Processing
+
+### Dataset 1
+
+[Dataset 1 Preprocessing Script](./datasetOnePreprocessing.py) -  preprocessing the dataset from the [Cyberbullying Data for Multi-Label Classification](https://www.kaggle.com/datasets/sayankr007/cyber-bullying-data-for-multi-label-classification?select=final_hateXplain.csv).
+
+### Dataset 2
+
+[Dataset 2 Preprocessing Script](./datasetTwoPreprocessing.py) - preprocessing the dataset from the [Anti LGBTQ Cyberbullying Texts](https://www.kaggle.com/datasets/kw5454331/anti-lgbt-cyberbullying-texts) dataset.
+
+### After Concatenating Datasets
+
+[Joint Dataset Preprocessing Script](./jointDatasetPreprocessing.py) - Concantenates the 2 datasets
+
+### Data Visualisation
+
+[Data Visualisation Script](./visualise.py) - Creates the visualisation
+
+Run `datasetOnePreprocessing.py` and `datasetTwoPreprocessing.py` before running `jointDatasetPreprocessing.py`.
+
+## Stage 3, 4 & 5 - Model Selection, Training, Evaluation, and Prediction
+
+### Logistic Regression
+
+[Logistic Regression Script](./logisticRegression.py) - The logistic regression model
+
+### K-Nearest Neighbours
+
+[K-Nearest Neighbours Script](./knn.py) - The k-nearest neighbours model
+
+---
+
+## Additional Files
+
+- Function for tokenising: Used in  scripts like `datasetOnePreprocessing.py`, `datasetTwoPreprocessing.py`, and `logisticRegression.py`.
+  - [stringTokenizationFunc.py](./stringTokenizationFunc.py)
