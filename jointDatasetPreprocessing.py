@@ -5,6 +5,7 @@ datasetOnePreprocessed = pd.read_csv("preprocessedDatasets/datasetOnePreprocesse
 datasetTwoPreprocessed = pd.read_csv("preprocessedDatasets/datasetTwoPreprocessed.csv")
 
 jointDataset = pd.concat([datasetOnePreprocessed, datasetTwoPreprocessed])
+jointDataset = print('First 5 values of joint dataset transposed:\n',jointDataset.head().T)
 jointDataset = jointDataset.drop(
     ["Unnamed: 0"], axis=1
 )  # dropping extra numerical index column
