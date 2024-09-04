@@ -109,7 +109,7 @@ for (
 ) in dataset.columns:  # Finding all the unique column values in the dataset
     if column_name != "comment":
         uniqueTargetValues[column_name] = set(dataset.loc[:, column_name].tolist())
-print("All unique  values in dataset:\n", uniqueTargetValues)
+print("All unique  values in target:\n", uniqueTargetValues)
 print()
 
 for column_name in dataset.columns:
