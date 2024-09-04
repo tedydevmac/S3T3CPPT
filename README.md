@@ -4,7 +4,7 @@ This project focuses on detecting and classifying cyberbullying in text, particu
 
 ## Stage 1 - Gather Data
 
-No scripts
+No code
 
 ## Stage 2 - Data Pre-Processing
 
