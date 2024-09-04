@@ -10,19 +10,19 @@ No scripts
 
 ### Dataset 1
 
-[Dataset 1 Preprocessing Script](./datasetOnePreprocessing.py) -  preprocessing the dataset from the [Cyberbullying Data for Multi-Label Classification](https://www.kaggle.com/datasets/sayankr007/cyber-bullying-data-for-multi-label-classification?select=final_hateXplain.csv).
+[Dataset 1 Preprocessing Code](./datasetOnePreprocessing.py) -  preprocessing the dataset from the [Cyberbullying Data for Multi-Label Classification](https://www.kaggle.com/datasets/sayankr007/cyber-bullying-data-for-multi-label-classification?select=final_hateXplain.csv).
 
 ### Dataset 2
 
-[Dataset 2 Preprocessing Script](./datasetTwoPreprocessing.py) - preprocessing the dataset from the [Anti LGBTQ Cyberbullying Texts](https://www.kaggle.com/datasets/kw5454331/anti-lgbt-cyberbullying-texts) dataset.
+[Dataset 2 Preprocessing Code](./datasetTwoPreprocessing.py) - preprocessing the dataset from the [Anti LGBTQ Cyberbullying Texts](https://www.kaggle.com/datasets/kw5454331/anti-lgbt-cyberbullying-texts) dataset.
 
 ### After Concatenating Datasets
 
-[Joint Dataset Preprocessing Script](./jointDatasetPreprocessing.py) - Concantenates the 2 datasets
+[Joint Dataset Preprocessing Code](./jointDatasetPreprocessing.py) - Concantenates the 2 datasets
 
 ### Data Visualisation
 
-[Data Visualisation Script](./visualise.py) - Creates the visualisation
+[Data Visualisation Code](./visualise.py) - Creates the visualisation
 
 Run `datasetOnePreprocessing.py` and `datasetTwoPreprocessing.py` before running `jointDatasetPreprocessing.py`.
 
@@ -30,15 +30,15 @@ Run `datasetOnePreprocessing.py` and `datasetTwoPreprocessing.py` before running
 
 ### Logistic Regression
 
-[Logistic Regression Script](./logisticRegression.py) - The logistic regression model
+[Logistic Regression Code](./logisticRegression.py) - The logistic regression model
 
 ### K-Nearest Neighbours
 
-[K-Nearest Neighbours Script](./knn.py) - The k-nearest neighbours model
+[K-Nearest Neighbours Code](./knn.py) - The k-nearest neighbours model
 
 ---
 
 ## Additional Files
 
-- Function for tokenising: Used in  scripts like `datasetOnePreprocessing.py`, `datasetTwoPreprocessing.py`, and `logisticRegression.py`.
+- Function for tokenising: Used in  like `datasetOnePreprocessing.py`, `datasetTwoPreprocessing.py`, and `logisticRegression.py`.
   - [stringTokenizationFunc.py](./stringTokenizationFunc.py)
